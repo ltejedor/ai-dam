@@ -1,4 +1,7 @@
 import os
+import sys
+# Ensure local smolagents-ref is used before any installed smolagents
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'smolagents-ref', 'src'))
 import requests
 import xml.etree.ElementTree as ET
 import json
@@ -42,27 +45,6 @@ def visit_webpage(url: str) -> str:
     except Exception as e:
         return f"An unexpected error occurred: {str(e)}"
 
-@tool
-def create_file(path: str, content: str) -> str:
-    """
-    Creates a file at the specified path with the given content.
-
-    Args:
-        path: The filesystem path where the file will be created.
-        content: The text content to write into the file.
-        Returns a success message or an error description.
-    
-    Returns: 
-        The location and name of the file was created, or an error.
-    """
-    try:
-        # Ensure directory exists
-        os.makedirs(os.path.dirname(path), exist_ok=True)
-        with open(path, 'w', encoding='utf-8') as f:
-            f.write(content)
-        return f"File created at {path}"
-    except Exception as e:
-        return f"Error creating file: {e}"
 
 # -----------------------------------------------------------------------------
 # Main Agent Workflow
@@ -70,7 +52,7 @@ def create_file(path: str, content: str) -> str:
 def main():
 
     # Set up the tools list for the agent.
-    tools = [visit_webpage, create_file]
+    tools = [visit_webpage]
     
     # Initialize the agent with the chosen tools and a basic model.
     #model = HfApiModel()
@@ -84,18 +66,63 @@ def main():
         max_steps=100
     )
     
-    # Interactive REPL via manager
+    # Import step types for recording
+    from smolagents.memory import TaskStep, PlanningStep, ActionStep, SystemPromptStep, FinalAnswerStep
+    import json
+
+    def record_step(step, agent_obj):
+        # Convert a memory step to a dict for real-time provenance logging
+        agent_name = getattr(agent_obj, 'name', None) or getattr(agent_obj, 'agent_name', type(agent_obj).__name__)
+        seq = len(agent_obj.memory.steps) - 1
+        rec = {'agent': agent_name, 'sequence': seq}
+        if isinstance(step, SystemPromptStep):
+            rec.update({'type': 'system_prompt', 'system_prompt': step.system_prompt})
+        elif isinstance(step, TaskStep):
+            rec.update({'type': 'task', 'task': step.task})
+        elif isinstance(step, PlanningStep):
+            rec.update({'type': 'planning', 'plan': step.plan})
+        elif isinstance(step, ActionStep):
+            calls = [tc.dict() for tc in (step.tool_calls or [])]
+            rec.update({
+                'type': 'action',
+                'step_number': step.step_number,
+                'model_output': step.model_output,
+                'tool_calls': calls,
+                'observations': step.observations,
+                'action_output': step.action_output,
+                'start_time': step.start_time,
+                'end_time': step.end_time,
+                'duration': step.duration,
+            })
+        elif isinstance(step, FinalAnswerStep):
+            rec.update({'type': 'final_answer', 'final_answer': step.final_answer})
+        else:
+            rec.update({'type': 'unknown'})
+        return rec
+
+    # Interactive REPL via manager with real-time provenance
     while True:
         task = input("\nEnter task (or 'exit' to quit): ")
         if task.lower() in ['exit', 'quit']:
             break
+        print(f"Starting run for task: {task}")
         try:
-            result = agent.run(task)
-            print("\nManager response:\n", result)
+            # Stream steps as they occur
+            stream = agent.run(task, stream=True)
+            # Emit initial task step
+            if agent.memory.steps:
+                initial = agent.memory.steps[0]
+                rec0 = record_step(initial, agent)
+                print(json.dumps(rec0, default=str))
+            # Emit subsequent steps
+            for step in stream:
+                rec = record_step(step, agent)
+                print(json.dumps(rec, default=str))
         except Exception as e:
-            print(f"Error: {e}")
-    
+            print(f"Error during run: {e}")
+
+    # Save full provenance at end
     saved_path = save_proof_of_work(agent, output_dir='./output')
-    print(f"Proof of work written to {saved_path}")
+    print(f"Full proof of work written to {saved_path}")
 if __name__ == '__main__':
     main()

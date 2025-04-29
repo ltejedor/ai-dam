@@ -1,0 +1,3 @@
+{ "provenance": {
+    "root_agent": { "name": "root", "class": "AgentClass", "model": "GPT-4", "steps": [{"sequence": 1, "type": "action", "tool_calls": [{"function": {"name": "toolA"}}], "observations": "Hello"}, {"sequence": 2, "type": "step"}], }, "managed_agents": {}
+}}
