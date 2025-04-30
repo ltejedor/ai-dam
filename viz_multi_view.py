@@ -45,6 +45,30 @@ def main():
     # Build timeline data (groups and items)
     groups, items = build_timeline_data(provenance)
 
+    # Remove step subgroup rows under root agent but keep action/tool items
+    root_agent = provenance.get('root_agent', {}) or {}
+    root_name = root_agent.get('name')
+    if root_name:
+        # Filter out subgroup definitions for root agent steps
+        filtered_groups = []
+        for g in groups:
+            gid = g.get('id')
+            if gid == root_name:
+                # clear nestedGroups for root agent
+                if 'nestedGroups' in g:
+                    g['nestedGroups'] = []
+                filtered_groups.append(g)
+            elif not (isinstance(gid, str) and gid.startswith(f"{root_name}-step-")):
+                filtered_groups.append(g)
+        groups = filtered_groups
+        # Flatten items: move step and tool_call items to root swimlane
+        for it in items:
+            if it.get('group') == root_name and \
+               isinstance(it.get('subgroup'), str) and \
+               it['subgroup'].startswith(f"{root_name}-step-"):
+                # remove subgroup so item appears on root group
+                del it['subgroup']
+
     # Serialize JSON blobs for embedding
     net_nodes_json = json.dumps(net_nodes, indent=2)
     net_edges_json = json.dumps(net_edges, indent=2)
@@ -104,6 +128,17 @@ def main():
     .msg-box.active {{
       background-color: #eef;
       border-color: #66a;
+    }}
+    /* hide message details by default, show when active */
+    .msg-box pre {{
+      display: none;
+      background-color: #f9f9f9;
+      padding: 8px;
+      margin-top: 4px;
+      border-radius: 4px;
+    }}
+    .msg-box.active pre {{
+      display: block;
     }}
     pre {{
       margin: 0;
@@ -177,7 +212,12 @@ def main():
   // -- Timeline View --
   var timelineGroups = new vis.DataSet({groups_json});
   var timelineItems = new vis.DataSet({items_json});
-  var timelineOptions = {{ selectable: true, showCurrentTime: false }};
+  var timelineOptions = {{
+    selectable: true,
+    showCurrentTime: false,
+    // enable nested step subgroups display
+    showNested: true
+  }};
   var timeline = new vis.Timeline(
     document.getElementById('timeline'),
     timelineItems,
@@ -194,7 +234,16 @@ def main():
     b.className = 'msg-box';
     b.dataset.nodeId = node.id;
     b.innerHTML = '<strong>' + (node.label || node.id) + '</strong>' + (node.title || '');
+    // attach hidden message details (JSON content)
+    var pre = document.createElement('pre');
+    pre.textContent = JSON.stringify(node, null, 2);
+    b.appendChild(pre);
     b.onclick = () => {{
+      // highlight message box and show details
+      document.querySelectorAll('.msg-box.active').forEach(e => e.classList.remove('active'));
+      b.classList.add('active');
+      b.scrollIntoView({{ behavior: 'smooth', block: 'center' }});
+      // select node in graph
       network.selectNodes([node.id]);
       network.focus(node.id, {{ scale: 1.2 }});
     }};

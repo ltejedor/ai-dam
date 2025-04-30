@@ -47,6 +47,17 @@
       background-color: #eef;
       border-color: #66a;
     }
+    /* hide message details by default, show when active */
+    .msg-box pre {
+      display: none;
+      background-color: #f9f9f9;
+      padding: 8px;
+      margin-top: 4px;
+      border-radius: 4px;
+    }
+    .msg-box.active pre {
+      display: block;
+    }
     pre {
       margin: 0;
       white-space: pre-wrap;
@@ -460,60 +471,173 @@
   var timelineGroups = new vis.DataSet([
   {
     "id": "CodeAgent",
-    "content": "CodeAgent"
+    "content": "CodeAgent",
+    "nestedGroups": [
+      "CodeAgent-step-1",
+      "CodeAgent-step-2",
+      "CodeAgent-step-3",
+      "CodeAgent-step-4",
+      "CodeAgent-step-5",
+      "CodeAgent-step-6",
+      "CodeAgent-step-7"
+    ]
+  },
+  {
+    "id": "CodeAgent-step-1",
+    "content": "Step 1: action"
+  },
+  {
+    "id": "CodeAgent-step-2",
+    "content": "Step 2: action"
+  },
+  {
+    "id": "CodeAgent-step-3",
+    "content": "Step 3: action"
+  },
+  {
+    "id": "CodeAgent-step-4",
+    "content": "Step 4: action"
+  },
+  {
+    "id": "CodeAgent-step-5",
+    "content": "Step 5: action"
+  },
+  {
+    "id": "CodeAgent-step-6",
+    "content": "Step 6: action"
+  },
+  {
+    "id": "CodeAgent-step-7",
+    "content": "Step 7: action"
   }
 ]);
   var timelineItems = new vis.DataSet([
   {
-    "id": "CodeAgent-step-0",
-    "group": "CodeAgent",
-    "content": "task",
-    "start": 0
-  },
-  {
     "id": "CodeAgent-step-1",
     "group": "CodeAgent",
+    "subgroup": "CodeAgent-step-1",
     "content": "action",
-    "start": 1
+    "start": "2025-04-29T12:55:26.150218",
+    "end": "2025-04-29T12:55:31.491897"
+  },
+  {
+    "id": "CodeAgent-step-1-call-0",
+    "group": "CodeAgent",
+    "subgroup": "CodeAgent-step-1",
+    "content": "\ud83d\udd27 python_interpreter",
+    "start": "2025-04-29T12:55:26.150218",
+    "type": "point",
+    "title": "{\n  \"id\": \"call_1\",\n  \"type\": \"function\",\n  \"function\": {\n    \"name\": \"python_interpreter\",\n    \"arguments\": \"search_query = \\\"cheapest motorcycle safety course san francisco california license MSF\\\"\\nresults = web_search(search_query)\\nprint(results)\"\n  }\n}"
   },
   {
     "id": "CodeAgent-step-2",
     "group": "CodeAgent",
+    "subgroup": "CodeAgent-step-2",
     "content": "action",
-    "start": 2
+    "start": "2025-04-29T12:55:31.492454",
+    "end": "2025-04-29T12:55:38.534473"
+  },
+  {
+    "id": "CodeAgent-step-2-call-0",
+    "group": "CodeAgent",
+    "subgroup": "CodeAgent-step-2",
+    "content": "\ud83d\udd27 python_interpreter",
+    "start": "2025-04-29T12:55:31.492454",
+    "type": "point",
+    "title": "{\n  \"id\": \"call_2\",\n  \"type\": \"function\",\n  \"function\": {\n    \"name\": \"python_interpreter\",\n    \"arguments\": \"# Let's visit the websites of these schools to find pricing information\\nwebsites = [\\n    \\\"https://motorcycleschool.com/products/basic-riding-course\\\",  # Bay Area Motorcycle Training\\n    \\\"https://www.pacificmotorcycletraining.com/\\\",  # Pacific Motorcycle Training\\n    \\\"https://motorcyclesafetyca.com/\\\"  # California Motorcyclist Safety Program\\n]\\n\\nfor url in websites:\\n    print(f\\\"Visiting {url}\\\")\\n    page_content = visit_webpage(url)\\n    print(\\\"=\\\" * 50)\\n    print(page_content[:1000])  # Print the first 1000 characters to avoid overwhelming output\\n    print(\\\"=\\\" * 50)\"\n  }\n}"
   },
   {
     "id": "CodeAgent-step-3",
     "group": "CodeAgent",
+    "subgroup": "CodeAgent-step-3",
     "content": "action",
-    "start": 3
+    "start": "2025-04-29T12:55:38.535226",
+    "end": "2025-04-29T12:55:46.225789"
+  },
+  {
+    "id": "CodeAgent-step-3-call-0",
+    "group": "CodeAgent",
+    "subgroup": "CodeAgent-step-3",
+    "content": "\ud83d\udd27 python_interpreter",
+    "start": "2025-04-29T12:55:38.535226",
+    "type": "point",
+    "title": "{\n  \"id\": \"call_3\",\n  \"type\": \"function\",\n  \"function\": {\n    \"name\": \"python_interpreter\",\n    \"arguments\": \"# Let's visit more specific pages for pricing information\\nwebsites = [\\n    \\\"https://motorcycleschool.com/pages/pricing\\\",  # Try pricing page for Bay Area Motorcycle Training\\n    \\\"https://www.pacificmotorcycletraining.com/new-riders\\\",  # Pacific Motorcycle Training's new riders page\\n    \\\"https://www.chp.ca.gov/EnforcementAndPlanningDivisionSite/Pages/California-Motorcyclist-Training.aspx\\\"  # CHP page about CMSP\\n]\\n\\nfor url in websites:\\n    print(f\\\"Visiting {url}\\\")\\n    try:\\n        page_content = visit_webpage(url)\\n        print(\\\"=\\\" * 50)\\n        print(page_content[:1500])  # Print the first 1500 characters to get more info\\n        print(\\\"=\\\" * 50)\\n    except Exception as e:\\n        print(f\\\"Error accessing {url}: {e}\\\")\\n        print(\\\"=\\\" * 50)\"\n  }\n}"
   },
   {
     "id": "CodeAgent-step-4",
     "group": "CodeAgent",
+    "subgroup": "CodeAgent-step-4",
     "content": "action",
-    "start": 4
+    "start": "2025-04-29T12:55:46.226220",
+    "end": "2025-04-29T12:56:00.589646"
+  },
+  {
+    "id": "CodeAgent-step-4-call-0",
+    "group": "CodeAgent",
+    "subgroup": "CodeAgent-step-4",
+    "content": "\ud83d\udd27 python_interpreter",
+    "start": "2025-04-29T12:55:46.226220",
+    "type": "point",
+    "title": "{\n  \"id\": \"call_4\",\n  \"type\": \"function\",\n  \"function\": {\n    \"name\": \"python_interpreter\",\n    \"arguments\": \"# Let's search directly for pricing information\\nsearch_queries = [\\n    \\\"Bay Area Motorcycle Training cost price\\\",\\n    \\\"Pacific Motorcycle Training cost price\\\",\\n    \\\"California Motorcyclist Safety Program cost price San Francisco\\\",\\n    \\\"Monkey Moto School San Francisco price\\\",\\n    \\\"cheapest motorcycle license class San Francisco\\\"\\n]\\n\\nfor query in search_queries:\\n    print(f\\\"Searching for: {query}\\\")\\n    results = web_search(query)\\n    print(\\\"=\\\" * 50)\\n    print(results)\\n    print(\\\"=\\\" * 50)\"\n  }\n}"
   },
   {
     "id": "CodeAgent-step-5",
     "group": "CodeAgent",
+    "subgroup": "CodeAgent-step-5",
     "content": "action",
-    "start": 5
+    "start": "2025-04-29T12:56:00.591801",
+    "end": "2025-04-29T12:56:10.095917"
+  },
+  {
+    "id": "CodeAgent-step-5-call-0",
+    "group": "CodeAgent",
+    "subgroup": "CodeAgent-step-5",
+    "content": "\ud83d\udd27 python_interpreter",
+    "start": "2025-04-29T12:56:00.591801",
+    "type": "point",
+    "title": "{\n  \"id\": \"call_5\",\n  \"type\": \"function\",\n  \"function\": {\n    \"name\": \"python_interpreter\",\n    \"arguments\": \"# Let's visit specific course pages to find pricing information\\nwebsites = [\\n    \\\"https://motorcycleschool.com/products/basic-riding-course\\\",  # Bay Area Motorcycle Training\\n    \\\"https://www.pacificmotorcycletraining.com/signup/basic\\\",     # Pacific Motorcycle Training signup\\n    \\\"https://www.monkeymotoschool.com/pricing\\\",                   # Monkey Moto School pricing\\n    \\\"https://www.mre-corp.com/training/get-licensed/\\\"             # MRE Corp (mentioned in search results)\\n]\\n\\nfor url in websites:\\n    print(f\\\"Visiting {url}\\\")\\n    try:\\n        page_content = visit_webpage(url)\\n        print(\\\"=\\\" * 50)\\n        print(page_content[:2000])  # Print the first 2000 characters to get more info\\n        print(\\\"=\\\" * 50)\\n    except Exception as e:\\n        print(f\\\"Error accessing {url}: {e}\\\")\\n        print(\\\"=\\\" * 50)\"\n  }\n}"
   },
   {
     "id": "CodeAgent-step-6",
     "group": "CodeAgent",
+    "subgroup": "CodeAgent-step-6",
     "content": "action",
-    "start": 6
+    "start": "2025-04-29T12:56:10.096626",
+    "end": "2025-04-29T12:56:26.785116"
+  },
+  {
+    "id": "CodeAgent-step-6-call-0",
+    "group": "CodeAgent",
+    "subgroup": "CodeAgent-step-6",
+    "content": "\ud83d\udd27 python_interpreter",
+    "start": "2025-04-29T12:56:10.096626",
+    "type": "point",
+    "title": "{\n  \"id\": \"call_6\",\n  \"type\": \"function\",\n  \"function\": {\n    \"name\": \"python_interpreter\",\n    \"arguments\": \"# Let's search directly for pricing information with more specific queries\\nsearch_queries = [\\n    \\\"Bay Area Motorcycle Training basic riding course price cost\\\",\\n    \\\"Pacific Motorcycle Training basic course price $\\\",\\n    \\\"Monkey Moto School lessons price cost\\\",\\n    \\\"Bay Riders Group motorcycle training cost\\\",\\n    \\\"San Francisco motorcycle safety course cost comparison\\\"\\n]\\n\\nfor query in search_queries:\\n    print(f\\\"Searching for: {query}\\\")\\n    results = web_search(query)\\n    print(\\\"=\\\" * 50)\\n    print(results)\\n    print(\\\"=\\\" * 50)\\n\\n# Let's also try to visit the Monkey Moto School main page\\ntry:\\n    monkey_moto = visit_webpage(\\\"https://www.monkeymotoschool.com/\\\")\\n    print(\\\"=\\\" * 50)\\n    print(\\\"Monkey Moto School Main Page:\\\")\\n    print(monkey_moto[:2000])  # Print the first 2000 characters\\n    print(\\\"=\\\" * 50)\\nexcept Exception as e:\\n    print(f\\\"Error accessing Monkey Moto School: {e}\\\")\"\n  }\n}"
   },
   {
     "id": "CodeAgent-step-7",
     "group": "CodeAgent",
+    "subgroup": "CodeAgent-step-7",
     "content": "action",
-    "start": 7
+    "start": "2025-04-29T12:56:26.786120",
+    "end": "2025-04-29T12:56:43.873697"
+  },
+  {
+    "id": "CodeAgent-step-7-call-0",
+    "group": "CodeAgent",
+    "subgroup": "CodeAgent-step-7",
+    "content": "\ud83d\udd27 python_interpreter",
+    "start": "2025-04-29T12:56:26.786120",
+    "type": "point",
+    "title": "{\n  \"id\": \"call_7\",\n  \"type\": \"function\",\n  \"function\": {\n    \"name\": \"python_interpreter\",\n    \"arguments\": \"# Compile the pricing information we've found\\nschools = {\\n    \\\"Bay Area Motorcycle Training\\\": {\\\"price\\\": 425, \\\"location\\\": \\\"San Francisco, Oakland, Vallejo\\\", \\\"type\\\": \\\"Group course\\\"},\\n    \\\"Pacific Motorcycle Training\\\": {\\\"price\\\": 425, \\\"location\\\": \\\"South SF, San Bruno, other Bay Area locations\\\", \\\"type\\\": \\\"Group course\\\"},\\n    \\\"Monkey Moto School\\\": {\\\"price\\\": 340, \\\"location\\\": \\\"San Francisco\\\", \\\"type\\\": \\\"Per private lesson (may need multiple)\\\"},\\n    \\\"Westside Motorcycle Academy\\\": {\\\"price\\\": 395, \\\"location\\\": \\\"Bay Area\\\", \\\"type\\\": \\\"Group course (under 21 price)\\\"},\\n    \\\"Westside Motorcycle Academy (21+)\\\": {\\\"price\\\": 425, \\\"location\\\": \\\"Bay Area\\\", \\\"type\\\": \\\"Group course (21+ price)\\\"}\\n}\\n\\n# Find the cheapest option based on single course/lesson price\\ncheapest = min(schools.items(), key=lambda x: x[1][\\\"price\\\"])\\nprint(f\\\"The cheapest single motorcycle training session/course is from {cheapest[0]} at ${cheapest[1]['price']}\\\")\\nprint(f\\\"Location: {cheapest[1]['location']}\\\")\\nprint(f\\\"Type: {cheapest[1]['type']}\\\")\\n\\n# Note about Monkey Moto School\\nif cheapest[0] == \\\"Monkey Moto School\\\":\\n    print(\\\"\\\\nNOTE: Monkey Moto School offers private lessons at $340 each, but multiple lessons may be needed for complete training.\\\")\\n    print(\\\"For a full license preparation, group courses like Westside Motorcycle Academy for under 21 riders ($395) might be more cost-effective overall.\\\")\\n\\nfinal_answer(\\\"The cheapest motorcycle training program near San Francisco for license preparation is Westside Motorcycle Academy at $395 for riders under 21. For riders 21 and older, most schools including Bay Area Motorcycle Training, Pacific Motorcycle Training, and Westside Motorcycle Academy charge $425 for their basic course which prepares you for the motorcycle license and provides the DL389 certificate that may waive the DMV riding test. While Monkey Moto School offers private lessons at $340 each, multiple lessons (2-4 as mentioned on their site) would likely be needed for complete training, making it more expensive overall.\\\")\"\n  }\n}"
   }
 ]);
-  var timelineOptions = { selectable: true, showCurrentTime: false };
+  var timelineOptions = {
+    selectable: true,
+    showCurrentTime: false,
+    // enable nested step subgroups display
+    showNested: true
+  };
   var timeline = new vis.Timeline(
     document.getElementById('timeline'),
     timelineItems,
@@ -715,7 +839,16 @@
     b.className = 'msg-box';
     b.dataset.nodeId = node.id;
     b.innerHTML = '<strong>' + (node.label || node.id) + '</strong>' + (node.title || '');
+    // attach hidden message details (JSON content)
+    var pre = document.createElement('pre');
+    pre.textContent = JSON.stringify(node, null, 2);
+    b.appendChild(pre);
     b.onclick = () => {
+      // highlight message box and show details
+      document.querySelectorAll('.msg-box.active').forEach(e => e.classList.remove('active'));
+      b.classList.add('active');
+      b.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      // select node in graph
       network.selectNodes([node.id]);
       network.focus(node.id, { scale: 1.2 });
     };
