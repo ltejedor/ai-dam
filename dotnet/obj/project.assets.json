@@ -2598,14 +2598,14 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/leandratejedor/Documents/hackathons/Agents/samples/hackathon/dotnet/HackathonAgent.csproj",
+      "projectUniqueName": "/Users/leandratejedor/Documents/hackathons/glassbox/dotnet/HackathonAgent.csproj",
       "projectName": "HackathonAgent",
-      "projectPath": "/Users/leandratejedor/Documents/hackathons/Agents/samples/hackathon/dotnet/HackathonAgent.csproj",
+      "projectPath": "/Users/leandratejedor/Documents/hackathons/glassbox/dotnet/HackathonAgent.csproj",
       "packagesPath": "/Users/leandratejedor/.nuget/packages/",
-      "outputPath": "/Users/leandratejedor/Documents/hackathons/Agents/samples/hackathon/dotnet/obj/",
+      "outputPath": "/Users/leandratejedor/Documents/hackathons/glassbox/dotnet/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/leandratejedor/Documents/hackathons/Agents/samples/hackathon/dotnet/NuGet.Config",
+        "/Users/leandratejedor/Documents/hackathons/glassbox/dotnet/NuGet.Config",
         "/Users/leandratejedor/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
@@ -2630,7 +2630,8 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      }
+      },
+      "SdkAnalysisLevel": "9.0.200"
     },
     "frameworks": {
       "net8.0": {
@@ -2664,6 +2665,20 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[8.0.15, 8.0.15]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.osx-arm64",
+            "version": "[8.0.15, 8.0.15]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[8.0.15, 8.0.15]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -2672,8 +2687,16 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/Users/leandratejedor/.dotnet/sdk/8.0.408/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.203/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1900",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Error occurred while getting package vulnerability data: Access to the path '/Users/leandratejedor/.local/share/NuGet/http-cache/670c1461c29885f9aa22c281d8b7da90845b38e4$ps:_api.nuget.org_v3_index.json/vuln_index.dat-new' is denied."
+    }
+  ]
 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "TKOYS4+JSpk=",
+  "dgSpecHash": "sObHtIu3kvM=",
   "success": true,
-  "projectFilePath": "/Users/leandratejedor/Documents/hackathons/Agents/samples/hackathon/dotnet/HackathonAgent.csproj",
+  "projectFilePath": "/Users/leandratejedor/Documents/hackathons/glassbox/dotnet/HackathonAgent.csproj",
   "expectedPackageFiles": [
     "/Users/leandratejedor/.nuget/packages/adaptivecards/3.1.0/adaptivecards.3.1.0.nupkg.sha512",
     "/Users/leandratejedor/.nuget/packages/azure.ai.openai/2.2.0-beta.4/azure.ai.openai.2.2.0-beta.4.nupkg.sha512",
@@ -60,7 +60,17 @@
     "/Users/leandratejedor/.nuget/packages/system.security.cryptography.protecteddata/8.0.0/system.security.cryptography.protecteddata.8.0.0.nupkg.sha512",
     "/Users/leandratejedor/.nuget/packages/system.text.encodings.web/9.0.2/system.text.encodings.web.9.0.2.nupkg.sha512",
     "/Users/leandratejedor/.nuget/packages/system.text.json/9.0.2/system.text.json.9.0.2.nupkg.sha512",
-    "/Users/leandratejedor/.nuget/packages/system.threading.tasks.extensions/4.6.3/system.threading.tasks.extensions.4.6.3.nupkg.sha512"
+    "/Users/leandratejedor/.nuget/packages/system.threading.tasks.extensions/4.6.3/system.threading.tasks.extensions.4.6.3.nupkg.sha512",
+    "/Users/leandratejedor/.nuget/packages/microsoft.netcore.app.ref/8.0.15/microsoft.netcore.app.ref.8.0.15.nupkg.sha512",
+    "/Users/leandratejedor/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.15/microsoft.aspnetcore.app.ref.8.0.15.nupkg.sha512",
+    "/Users/leandratejedor/.nuget/packages/microsoft.netcore.app.host.osx-arm64/8.0.15/microsoft.netcore.app.host.osx-arm64.8.0.15.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1900",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Error occurred while getting package vulnerability data: Access to the path '/Users/leandratejedor/.local/share/NuGet/http-cache/670c1461c29885f9aa22c281d8b7da90845b38e4$ps:_api.nuget.org_v3_index.json/vuln_index.dat-new' is denied."
+    }
+  ]
 }
