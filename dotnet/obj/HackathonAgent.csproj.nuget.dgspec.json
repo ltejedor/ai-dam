@@ -1,0 +1,89 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/leandratejedor/Documents/hackathons/Agents/samples/hackathon/dotnet/HackathonAgent.csproj": {}
+  },
+  "projects": {
+    "/Users/leandratejedor/Documents/hackathons/Agents/samples/hackathon/dotnet/HackathonAgent.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/leandratejedor/Documents/hackathons/Agents/samples/hackathon/dotnet/HackathonAgent.csproj",
+        "projectName": "HackathonAgent",
+        "projectPath": "/Users/leandratejedor/Documents/hackathons/Agents/samples/hackathon/dotnet/HackathonAgent.csproj",
+        "packagesPath": "/Users/leandratejedor/.nuget/packages/",
+        "outputPath": "/Users/leandratejedor/Documents/hackathons/Agents/samples/hackathon/dotnet/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/leandratejedor/Documents/hackathons/Agents/samples/hackathon/dotnet/NuGet.Config",
+          "/Users/leandratejedor/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {},
+          "https://pkgs.dev.azure.com/azure-sdk/public/_packaging/azure-sdk-for-net/nuget/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Azure.AI.OpenAI": {
+              "target": "Package",
+              "version": "[2.2.0-beta.4, )"
+            },
+            "Azure.Core": {
+              "target": "Package",
+              "version": "[1.44.1, )"
+            },
+            "Microsoft.Agents.Authentication.Msal": {
+              "target": "Package",
+              "version": "[0.2.*-*, )"
+            },
+            "Microsoft.Agents.Hosting.AspNetCore": {
+              "target": "Package",
+              "version": "[0.2.*-*, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/Users/leandratejedor/.dotnet/sdk/8.0.408/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

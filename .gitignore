@@ -2,3 +2,5 @@
 .DS_Store
 
 output/*.json
+
+dotnet/appsettings.json
