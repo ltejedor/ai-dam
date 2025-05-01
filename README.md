@@ -1,4 +1,4 @@
-﻿# Hackathon Submission: Intelligent Web-Enabled Chat Agent
+﻿# Hackathon Submission: AI Dam
 
 This repository contains the code for a Microsoft Hackathon entry: a .NET 8.0 conversational AI agent built with the Microsoft Agents SDK, Azure OpenAI (GPT-4o-mini), and a custom web search plugin. It demonstrates how to extend a Bot Framework Agent with external knowledge access and structured event logging for analytics and visualization.
 
