@@ -68,11 +68,6 @@ The submission includes a standalone Conversation Visualizer that parses the NDJ
 
 Point the visualizer at any `conversation.jsonl` log file to explore conversation trajectories, tool usage patterns, and performance metrics. Live-reload support enables real-time monitoring during local development.
 
-## Future Enhancements
-- Enable LLM-driven function calls for tool selection instead of manual `/search` prefixes.
-- Format responses with Adaptive Cards for richer UI.
-- Persist conversation logs to Azure Blob Storage or Cosmos DB for real-time dashboards.
-- Add more plugins (e.g., knowledge base lookup, translation, summarization).
 
 ---
 _Built with Microsoft Agents SDK & Azure OpenAI during the 2025 hackathon._
